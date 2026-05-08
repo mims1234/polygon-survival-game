@@ -707,7 +707,7 @@ window.addEventListener("keydown", (e) => {
     mapOverlay.toggle();
   }
   if (e.key === "h" || e.key === "H") {
-    window.location.href = "help.html?v=1.1.0";
+    window.location.href = "./help.html";
   }
   if (e.key === "Escape" && mapOverlay.isVisible()) {
     mapOverlay.hide();
