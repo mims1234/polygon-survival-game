@@ -30,6 +30,7 @@ const canvas = document.querySelector("#game");
 const resourceRoot = document.querySelector("#resource-bar");
 const progressRoot = document.querySelector("#progress-bar");
 const toolRoot = document.querySelector("#tool-panel");
+const mobileToolRoot = document.querySelector("#mobile-toolbar");
 const buildRoot = document.querySelector("#build-panel");
 const overlayRoot = document.querySelector("#overlay-root");
 const statusRoot = document.querySelector("#status-panel");
@@ -95,6 +96,7 @@ const state = {
 
 const toolbar = createToolbar({
   root: toolRoot,
+  mobileRoot: mobileToolRoot,
   onSelect: (toolId) => {
     state.activeTool = toolId;
     renderUI();
@@ -644,6 +646,49 @@ canvas.addEventListener("pointermove", (event) => {
   highlight.setHover(tile);
 });
 
+// ── Touch support ──────────────────────────────────────────────────────────
+// Prevent context menu on long-press (Android) and double-tap zoom
+canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+canvas.addEventListener("touchstart", (e) => e.preventDefault(), { passive: false });
+
+// Convert a Touch into a synthetic pointer-like object for the raycaster
+function touchToPointer(touch) {
+  return { clientX: touch.clientX, clientY: touch.clientY };
+}
+
+let touchStartX = 0;
+let touchStartY = 0;
+const TAP_SLOP = 10; // pixels – movement larger than this is a drag, not a tap
+
+canvas.addEventListener("touchstart", (e) => {
+  const t = e.changedTouches[0];
+  touchStartX = t.clientX;
+  touchStartY = t.clientY;
+
+  // Update hover tile on touch so the highlight follows the finger
+  const instanceId = raycast.pickTile(touchToPointer(t));
+  state.hoverTileIndex = instanceId;
+  const tile = instanceId == null ? null : grid.tiles[instanceId];
+  highlight.setHover(tile);
+}, { passive: false });
+
+canvas.addEventListener("touchend", (e) => {
+  const t = e.changedTouches[0];
+  const dx = Math.abs(t.clientX - touchStartX);
+  const dy = Math.abs(t.clientY - touchStartY);
+
+  // Only treat it as a tile-select tap if the finger barely moved
+  if (dx <= TAP_SLOP && dy <= TAP_SLOP) {
+    const instanceId = raycast.pickTile(touchToPointer(t));
+    if (instanceId != null) {
+      const tile = grid.tiles[instanceId];
+      if (tile && tile.discovered) {
+        queueAction(tile);
+      }
+    }
+  }
+}, { passive: true });
+
 window.addEventListener("keydown", (event) => {
   if (state.transition > 0 || state.winShown) return;
   const keyMap = { "1": "hand", "2": "axe", "3": "pickaxe", "4": "bucket", "5": "build" };
@@ -675,6 +720,31 @@ document.getElementById("help-hint-btn")?.addEventListener("click", () => {
 });
 document.getElementById("info-rail-toggle")?.addEventListener("click", () => {
   document.querySelector(".info-rail")?.classList.toggle("open");
+});
+
+// ── D-pad: move player one tile in a cardinal direction ────────────────────
+function dpadMove(dir) {
+  if (state.transition > 0 || state.winShown) return;
+  const pos = player.getGridPosition();
+  const deltas = { north: [0, -1], south: [0, 1], west: [-1, 0], east: [1, 0] };
+  const [dx, dy] = deltas[dir] ?? [0, 0];
+  const nx = pos.x + dx;
+  const ny = pos.y + dy;
+  const tile = grid.getTile(nx, ny);
+  if (!tile) return;
+  player.moveToTile(tile);
+  state.selectedTileIndex = tile.index;
+  highlight.setSelected(tile);
+  state.queuedAction = null;
+  renderUI();
+}
+
+document.querySelectorAll(".dpad-btn").forEach((btn) => {
+  // Use pointerdown for responsive feel; prevent default to avoid canvas click-through
+  btn.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    dpadMove(btn.dataset.dir);
+  });
 });
 
 const resetBtn = document.getElementById("reset-button");

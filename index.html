@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Wildlands</title>
     <link rel="stylesheet" href="./style.css" />
     <script type="importmap">
@@ -24,25 +27,28 @@
           <div class="panel progress-panel">
             <div id="progress-bar"></div>
             <div class="progress-bar-actions">
-              <div class="map-hint-button" id="help-hint-btn">❔ Help <kbd>H</kbd></div>
-              <div class="map-hint-button" id="map-hint-btn">🗺 Map <kbd>M</kbd></div>
+              <div class="map-hint-button" id="help-hint-btn" aria-label="Help">❔ <span class="btn-label">Help</span> <kbd>H</kbd></div>
+              <div class="map-hint-button" id="map-hint-btn" aria-label="Map">🗺 <span class="btn-label">Map</span> <kbd>M</kbd></div>
               <button
                 id="reset-button"
                 class="reset-button"
                 type="button"
-              >Reset</button>
+                aria-label="Reset game"
+              ><span class="btn-label">Reset</span></button>
               <button
                 id="reset-confirm-button"
                 class="reset-confirm-button"
                 type="button"
                 hidden
-              >Confirm</button>
+                aria-label="Confirm reset"
+              >✓</button>
               <button
                 id="reset-cancel-button"
                 class="reset-cancel-button"
                 type="button"
                 hidden
-              >Cancel</button>
+                aria-label="Cancel reset"
+              >✕</button>
             </div>
           </div>
         </header>
@@ -65,6 +71,17 @@
         <div id="map-root"></div>
         <div id="overlay-root"></div>
         <div id="region-transition" class="region-transition"></div>
+
+        <!-- Mobile-only bottom tool bar (shown via CSS when touch device) -->
+        <nav id="mobile-toolbar" class="mobile-toolbar" aria-label="Tools"></nav>
+
+        <!-- Virtual D-pad for mobile movement -->
+        <div id="dpad" class="dpad" aria-hidden="true">
+          <button class="dpad-btn dpad-up"   data-dir="north" aria-label="Move north">▲</button>
+          <button class="dpad-btn dpad-left"  data-dir="west"  aria-label="Move west">◀</button>
+          <button class="dpad-btn dpad-right" data-dir="east"  aria-label="Move east">▶</button>
+          <button class="dpad-btn dpad-down"  data-dir="south" aria-label="Move south">▼</button>
+        </div>
       </div>
     </div>
 
