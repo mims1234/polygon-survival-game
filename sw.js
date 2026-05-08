@@ -1,4 +1,4 @@
-const VERSION = "1.1.3";
+const VERSION = "1.1.4";
 const CACHE = `wildlands-${VERSION}`;
 
 const PRECACHE = [
@@ -32,11 +32,17 @@ self.addEventListener("message", (e) => {
   if (e.data === "skipWaiting") self.skipWaiting();
 });
 
-// Fetch: network-first for HTML, cache-first for everything else
+// Fetch: only handle same-origin http/https requests
 self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
 
-  // Always go network-first for HTML pages so updates land immediately
+  // Ignore non http(s) schemes (chrome-extension, data, blob, etc.)
+  if (!url.protocol.startsWith("http")) return;
+
+  // Ignore third-party requests (Cloudflare analytics, CDNs, etc.)
+  if (url.origin !== self.location.origin) return;
+
+  // Network-first for HTML — always get fresh page on navigation
   if (e.request.headers.get("accept")?.includes("text/html")) {
     e.respondWith(
       fetch(e.request)
@@ -50,11 +56,13 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  // Cache-first for JS/CSS (versioned via ?v= so stale is never a problem)
+  // Cache-first for same-origin JS/CSS/assets
   e.respondWith(
     caches.match(e.request).then((cached) => {
       if (cached) return cached;
       return fetch(e.request).then((res) => {
+        // Only cache valid same-origin responses
+        if (!res || res.status !== 200 || res.type !== "basic") return res;
         const clone = res.clone();
         caches.open(CACHE).then((c) => c.put(e.request, clone));
         return res;
