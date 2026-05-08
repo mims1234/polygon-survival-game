@@ -936,10 +936,12 @@ body,
 
   /* Mobile toolbar tool buttons: compact icon+label */
   .mobile-toolbar .tool-button {
-    flex: 1;
+    flex: 1 0 52px;
     min-width: 52px;
     min-height: 52px;
-    display: flex;
+    /* Override the desktop grid layout completely */
+    display: flex !important;
+    grid-template-columns: unset;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -947,17 +949,33 @@ body,
     padding: 6px 4px;
     border-radius: 10px;
     font-size: 0.65rem;
-    grid-template-columns: unset;
     text-align: center;
+    width: auto;
   }
 
   .mobile-toolbar .tool-button span:first-child {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: 1;
   }
 
-  .mobile-toolbar .tool-button em {
+  .mobile-toolbar .tool-button strong {
     font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  .mobile-toolbar .tool-button em {
+    font-size: 0.55rem;
+  }
+
+  /* Upgrade button inside mobile toolbar */
+  .mobile-toolbar .upgrade-button {
+    flex: 1 0 60px;
+    min-height: 52px;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    padding: 6px 4px;
+    grid-column: unset;
+    white-space: nowrap;
   }
 
   /* Info rail: slide-up drawer */
@@ -1016,11 +1034,11 @@ body,
 
   /* Build panel: bottom sheet sitting above mobile-toolbar */
   .build-panel {
-    left: calc(8px + var(--safe-left));
+    left: calc(8px + var(--safe-left)) !important;
     right: calc(8px + var(--safe-right));
     bottom: calc(var(--safe-bottom) + 76px); /* above toolbar */
-    width: auto;
-    transform: none;
+    width: auto !important;
+    transform: none !important;
     max-height: 36vh;
     overflow-y: auto;
     overscroll-behavior: contain;

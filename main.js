@@ -707,7 +707,7 @@ window.addEventListener("keydown", (e) => {
     mapOverlay.toggle();
   }
   if (e.key === "h" || e.key === "H") {
-    window.location.href = "help.html";
+    window.location.href = "help.html?v=1.1.0";
   }
   if (e.key === "Escape" && mapOverlay.isVisible()) {
     mapOverlay.hide();
@@ -716,7 +716,7 @@ window.addEventListener("keydown", (e) => {
 
 document.getElementById("map-hint-btn")?.addEventListener("click", () => mapOverlay.toggle());
 document.getElementById("help-hint-btn")?.addEventListener("click", () => {
-  window.location.href = "help.html";
+  window.location.href = "help.html?v=1.1.0";
 });
 document.getElementById("info-rail-toggle")?.addEventListener("click", () => {
   document.querySelector(".info-rail")?.classList.toggle("open");

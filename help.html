@@ -2,9 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Wildlands - Help</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./style.css?v=1.1.1" />
   </head>
   <body>
     <div id="app">
@@ -145,7 +148,7 @@
           </div>
 
           <div class="overlay-actions" style="margin-top: 0;">
-            <button class="overlay-button" onclick="window.location.href='index.html'">Back to Game</button>
+            <button class="overlay-button" onclick="window.location.href='index.html?v=1.1.0'">Back to Game</button>
           </div>
         </div>
       </div>
@@ -154,7 +157,7 @@
     <script>
       window.addEventListener("keydown", (e) => {
         if (e.key === "Escape" || e.key === "h" || e.key === "H") {
-          window.location.href = "index.html";
+          window.location.href = "index.html?v=1.1.0";
         }
       });
     </script>
