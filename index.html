@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wildlands</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game"></canvas>
+
+      <div id="hud-root">
+        <header class="top-strip">
+          <div id="resource-bar" class="panel resource-bar"></div>
+          <div class="panel progress-panel">
+            <div id="progress-bar"></div>
+            <div class="progress-bar-actions">
+              <div class="map-hint-button" id="help-hint-btn">❔ Help <kbd>H</kbd></div>
+              <div class="map-hint-button" id="map-hint-btn">🗺 Map <kbd>M</kbd></div>
+              <button
+                id="reset-button"
+                class="reset-button"
+                type="button"
+              >Reset</button>
+              <button
+                id="reset-confirm-button"
+                class="reset-confirm-button"
+                type="button"
+                hidden
+              >Confirm</button>
+              <button
+                id="reset-cancel-button"
+                class="reset-cancel-button"
+                type="button"
+                hidden
+              >Cancel</button>
+            </div>
+          </div>
+        </header>
+
+        <aside id="tool-panel" class="panel tool-panel"></aside>
+
+        <aside class="panel info-rail">
+          <button class="info-rail-toggle" id="info-rail-toggle" aria-label="Toggle info panel">&#9432; Info</button>
+          <div id="status-panel" class="status-panel"></div>
+          <div id="inspector-panel" class="inspector-panel"></div>
+          <div id="objective-panel" class="objective-panel"></div>
+          <div id="crafting-panel" class="crafting-panel"></div>
+        </aside>
+
+        <section id="build-panel" class="panel build-panel"></section>
+
+        <div id="action-bar" class="action-bar" hidden>
+          <div class="action-track"><div class="action-fill"></div></div>
+        </div>
+        <div id="map-root"></div>
+        <div id="overlay-root"></div>
+        <div id="region-transition" class="region-transition"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

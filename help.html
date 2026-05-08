@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wildlands - Help</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="overlay" style="z-index: 100;">
+        <div class="overlay-card" style="width: min(860px, calc(100% - 32px)); text-align: left; display: flex; flex-direction: column; max-height: 92vh;">
+          <h1 style="text-align: center; font-size: 2rem;">How to Play Wildlands</h1>
+          <div style="overflow-y: auto; padding-right: 15px; margin-bottom: 20px; flex: 1;">
+
+            <h3 style="color: var(--accent);">Overview</h3>
+            <p>Welcome to <strong>Wildlands</strong> — a survival exploration game set in an endless procedurally generated world. Gather resources, build structures, survive the cold, craft advanced materials, and establish a thriving empire. Your ultimate goal is to build a <strong>Market</strong> and achieve the empire victory.</p>
+
+            <h3 style="color: var(--accent);">Controls</h3>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li><strong>Click</strong> a tile to move there and interact.</li>
+              <li><strong>1</strong> — Hand (gather food)</li>
+              <li><strong>2</strong> — Axe (chop trees for wood)</li>
+              <li><strong>3</strong> — Pickaxe (mine rocks for stone)</li>
+              <li><strong>4</strong> — Bucket (collect water)</li>
+              <li><strong>5</strong> — Build (opens the build menu)</li>
+              <li><strong>M</strong> — Toggle World Map</li>
+              <li><strong>H</strong> — Open this Help guide</li>
+              <li><strong>Escape</strong> — Close map</li>
+            </ul>
+
+            <h3 style="color: var(--accent);">Core Resources</h3>
+            <p>There are 7 resources in the game:</p>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li><strong>Wood</strong> — Gathered from trees with an Axe.</li>
+              <li><strong>Stone</strong> — Mined from rocks with a Pickaxe.</li>
+              <li><strong>Food</strong> — Gathered from bushes with your Hand.</li>
+              <li><strong>Water</strong> — Collected from water tiles with a Bucket.</li>
+              <li><strong>Planks</strong> — Crafted from Wood. Used for advanced buildings.</li>
+              <li><strong>Ingots</strong> — Smelted from Stone at a <strong>Forge</strong>.</li>
+              <li><strong>Coins</strong> — Minted at a <strong>Market</strong>. Used for upgrades and trade.</li>
+            </ul>
+
+            <h3 style="color: var(--accent);">Tools & Upgrades</h3>
+            <p>Your tools can be upgraded to increase yield, speed, and reduce stamina cost. Upgrades require a <strong>Forge</strong> (Tier II) or a <strong>Blast Furnace</strong> (Tier III).</p>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li><strong>Tier I (Base):</strong> +1 yield per gather</li>
+              <li><strong>Tier II (Forge):</strong> +2 yield, faster, less stamina. Costs wood/stone/water.</li>
+              <li><strong>Tier III (Blast Furnace):</strong> +3 yield, very fast, very low stamina. Costs <strong>ingots + planks + coins</strong>.</li>
+            </ul>
+            <p>Click the <strong>"Upgrade Tools"</strong> button in the Tools panel when a Forge is available.</p>
+
+            <h3 style="color: var(--accent);">Buildings & Upgrades</h3>
+            <p>Every production building can be <strong>upgraded once</strong> for better output. Select a building tile to see the Upgrade button in the Inspector panel. Upgraded buildings have unique 3D models and stronger effects.</p>
+            <table style="width:100%; color: var(--muted); font-size: 0.85rem; margin-top: 8px; border-collapse: collapse;">
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <th style="text-align:left; padding: 6px 0;">Building</th>
+                <th style="text-align:left; padding: 6px 0;">Upgrade</th>
+                <th style="text-align:left; padding: 6px 0;">Effect</th>
+              </tr>
+              <tr><td style="padding: 4px 0;">Campfire</td><td>Bonfire</td><td>Wider warmth radius, +5 storage</td></tr>
+              <tr><td style="padding: 4px 0;">Shelter</td><td>Cabin</td><td>+10 storage, slower hunger, better stamina regen</td></tr>
+              <tr><td style="padding: 4px 0;">Farm</td><td>Irrigated Farm</td><td>40% faster, no water consumption</td></tr>
+              <tr><td style="padding: 4px 0;">Lumber Camp</td><td>Sawmill</td><td>+2 wood per cycle</td></tr>
+              <tr><td style="padding: 4px 0;">Quarry</td><td>Deep Quarry</td><td>+2 stone per cycle</td></tr>
+              <tr><td style="padding: 4px 0;">Well</td><td>Deep Well</td><td>+2 water per cycle</td></tr>
+              <tr><td style="padding: 4px 0;">Forge</td><td>Blast Furnace</td><td>Cheaper ingots, unlocks Tier III tools</td></tr>
+              <tr><td style="padding: 4px 0;">Workshop</td><td>Factory</td><td>More efficient planks</td></tr>
+              <tr><td style="padding: 4px 0;">Market</td><td>Trade Hub</td><td>Better trade rates, bulk coin crafting</td></tr>
+            </table>
+
+            <h3 style="color: var(--accent);">Crafting</h3>
+            <p>Open the <strong>Craft</strong> panel to convert resources. Some recipes require specific buildings:</p>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li><strong>Planks:</strong> 3 Wood → 2 Planks (no building needed)</li>
+              <li><strong>Ingots:</strong> 4 Stone + 1 Water → 1 Ingot (needs <strong>Forge</strong>)</li>
+              <li><strong>Ingots (Efficient):</strong> 3 Stone + 1 Water → 1 Ingot (needs <strong>Blast Furnace</strong>)</li>
+              <li><strong>Coins:</strong> 3 Food + 1 Plank → 1 Coin (needs <strong>Market</strong>)</li>
+              <li><strong>Coins (Bulk):</strong> 5 Food + 2 Planks → 3 Coins (needs <strong>Trade Hub</strong>)</li>
+            </ul>
+
+            <h3 style="color: var(--accent);">Survival: Stamina, Hunger & Temperature</h3>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li><strong>Stamina:</strong> Decreases when gathering. Regenerates over time. Low stamina slows you down.</li>
+              <li><strong>Hunger:</strong> Constantly drains. If it hits zero, stamina drains rapidly. Food is auto-eaten when hunger drops below 55.</li>
+              <li><strong>Temperature (Temp):</strong> Shown in the Survival panel. You slowly get colder when away from a <strong>Campfire or Bonfire</strong>. Night makes you freeze faster.</li>
+              <li><strong>Freezing to Death:</strong> If your cold meter fills completely (1 hour without warmth), you <strong>die</strong>. You respawn at the center with penalties.</li>
+            </ul>
+            <p><strong>Tips:</strong> Build a Campfire early. Upgrade it to a Bonfire for a larger safe zone. Shelter and Cabin reduce hunger drain and boost stamina regen.</p>
+
+            <h3 style="color: var(--accent);">Automation & Consumption</h3>
+            <p>Automated buildings produce resources over time, but most require fuel:</p>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li><strong>Farm / Irrigated Farm:</strong> Produces Food. <strong>Farm consumes 1 Water per cycle</strong>. Irrigated Farm is free.</li>
+              <li><strong>Lumber Camp / Sawmill:</strong> Produces Wood. <strong>Consumes 1 Food per cycle</strong>.</li>
+              <li><strong>Quarry / Deep Quarry:</strong> Produces Stone. <strong>Consumes 1 Wood per cycle</strong>.</li>
+              <li><strong>Well / Deep Well:</strong> Produces Water. <strong>Free to operate</strong>.</li>
+              <li><strong>Workshop / Factory:</strong> Produces Planks. Consumes Wood.</li>
+            </ul>
+
+            <h3 style="color: var(--accent);">Storage System</h3>
+            <p>You start with only <strong>10 storage capacity</strong>. Build structures to increase it:</p>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li>Campfire: +5</li>
+              <li>Bonfire: +10</li>
+              <li>Shelter: +15</li>
+              <li>Cabin: +25</li>
+            </ul>
+            <p>If storage is full, you cannot gather more resources until you spend or craft them.</p>
+
+            <h3 style="color: var(--accent);">Exploration & Regions</h3>
+            <p>The world is made of infinite 20×20 regions. Walk to any edge to travel to the next region.</p>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li>Resources are <strong>scarce</strong> and respawn very slowly. You must explore to find more.</li>
+              <li>Each region has different biome layouts — some are wood-rich, others stone-rich.</li>
+              <li>First visit to a new region grants <strong>+30 XP</strong>.</li>
+              <li>Press <strong>M</strong> to see visited and current regions on the World Map.</li>
+            </ul>
+
+            <h3 style="color: var(--accent);">Progression & Levels</h3>
+            <p>Gain XP by gathering, crafting, building, exploring, and upgrading. Levels unlock new buildings:</p>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li><strong>Lv 1</strong> — Campfire</li>
+              <li><strong>Lv 2</strong> — Shelter</li>
+              <li><strong>Lv 3</strong> — Farm, Well</li>
+              <li><strong>Lv 4</strong> — Watchtower, Lumber Camp, Quarry</li>
+              <li><strong>Lv 5</strong> — Forge, Workshop</li>
+              <li><strong>Lv 6</strong> — Market</li>
+            </ul>
+
+            <h3 style="color: var(--accent);">Victory Condition</h3>
+            <p>Build a <strong>Market</strong> to open trade routes and complete the empire victory. You can keep playing after winning. Upgrade the Market to a <strong>Trade Hub</strong> for even better trade deals and bulk coin production.</p>
+
+            <h3 style="color: var(--accent);">Quick Tips</h3>
+            <ul style="color: var(--muted); line-height: 1.6;">
+              <li>Build a <strong>Campfire</strong> immediately. The cold will kill you.</li>
+              <li>Build a <strong>Well</strong> early for passive water — it costs nothing to run.</li>
+              <li>Don't over-gather in one region. Resources take 6–10 minutes to respawn.</li>
+              <li>Upgrade your <strong>Shelter to a Cabin</strong> for much-needed storage.</li>
+              <li><strong>Coins</strong> are valuable — they're required for building upgrades and Tier III tools.</li>
+              <li>The <strong>Blast Furnace</strong> is a major power spike. Prioritize it after your Market.</li>
+              <li>Use the <strong>Map (M)</strong> to plan exploration and avoid backtracking.</li>
+            </ul>
+
+          </div>
+
+          <div class="overlay-actions" style="margin-top: 0;">
+            <button class="overlay-button" onclick="window.location.href='index.html'">Back to Game</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" || e.key === "h" || e.key === "H") {
+          window.location.href = "index.html";
+        }
+      });
+    </script>
+  </body>
+</html>
