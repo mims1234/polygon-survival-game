@@ -8,6 +8,27 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Wildlands</title>
     <link rel="stylesheet" href="./style.css?v=1.1.1" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./sw.js").then((reg) => {
+          // If a new SW is waiting, activate it immediately and reload
+          reg.addEventListener("updatefound", () => {
+            const next = reg.installing;
+            next.addEventListener("statechange", () => {
+              if (next.state === "installed" && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage("skipWaiting");
+                window.location.reload();
+              }
+            });
+          });
+        });
+        // Reload when the new SW takes over
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          if (!refreshing) { refreshing = true; window.location.reload(); }
+        });
+      }
+    </script>
     <script type="importmap">
       {
         "imports": {
